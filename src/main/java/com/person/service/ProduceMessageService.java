@@ -1,6 +1,7 @@
 package com.person.service;
 
 import com.person.model.Person;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.AmqpException;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ProduceMessageService {
     private static final Logger logger = LoggerFactory.getLogger(ProduceMessageService.class);
     private final RabbitTemplate rabbitTemplate;
@@ -16,10 +18,6 @@ public class ProduceMessageService {
     private String routingKey;
     @Value("${exchange}")
     private String exchange;
-
-    public ProduceMessageService(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
-    }
 
     public String produceMessage(Person person) {
         try {

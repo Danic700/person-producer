@@ -1,17 +1,18 @@
 package com.person.controller;
 import com.person.model.Person;
 import com.person.service.ProduceMessageService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/persons")
 public class ProduceMessageController {
 
-    @Autowired
-    private ProduceMessageService produceMessageService;
+    private final ProduceMessageService produceMessageService;
+
 
     @PostMapping("/produce")
     public ResponseEntity<String> produceMessage(@RequestBody Person person) {
